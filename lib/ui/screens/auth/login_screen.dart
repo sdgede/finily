@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:finily/res/asset/call_assets.dart';
 import 'package:finily/res/colors/colors.dart';
 import 'package:finily/res/string/string.dart';
 import 'package:finily/res/style/style.dart';
@@ -6,38 +6,36 @@ import 'package:finily/routes/auth_route.dart';
 import 'package:finily/ui/widgets/buttons/primary_button.dart';
 import 'package:finily/ui/widgets/buttons/secondary_button.dart';
 import 'package:finily/ui/widgets/clipper/wave_clipper.dart';
-import 'package:finily/ui/widgets/forms/input_checkbox.dart';
 import 'package:finily/ui/widgets/forms/input_text.dart';
 import 'package:finily/ui/widgets/text/tagline.dart';
 import 'package:finily/ui/widgets/text/title.dart';
+import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
-  void _onRegister() {
+  void _onLogin() {
     if (_formKey.currentState!.validate()) {
-      debugPrint("✅ Form valid, lanjut register...");
-      // TODO: Tambahkan logic register
+      debugPrint("✅ Login sukses, lanjut ke dashboard...");
     } else {
-      debugPrint("❌ Form invalid, cek input user");
+      debugPrint("❌ Login gagal, cek input user");
     }
   }
 
@@ -74,34 +72,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: size.height * 0.25),
+              padding: EdgeInsets.only(top: size.height * 0.2),
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(AppStyle.mediumSpacing),
+                padding: EdgeInsets.all(AppStyle.smallSpacing),
                 child: Column(
                   children: [
                     TitleWidget(
-                      text: AppStrings.register,
+                      text: AppStrings.login,
                       color: AppColors.primaryColor,
                     ),
-                    Tagline(text: AppStrings.taglineRegister),
-                    SizedBox(height: AppStyle.largeSpacing * 2),
+                    Tagline(text: AppStrings.taglineLogin),
 
                     Form(
-                      key: _formKey, // ✅ pakai formKey yg konsisten
+                      key: _formKey,
                       child: Column(
                         children: [
-                          InputText(
-                            label: "Name",
-                            hint: "Enter your name",
-                            controller: nameController,
-                            prefixIcon: Icons.person,
-                            validator:
-                                (val) =>
-                                    val == null || val.isEmpty
-                                        ? "Name required"
-                                        : null,
+                          Image(
+                            image: AssetImage(CallAssets.login),
+                            height: size.height * 0.25,
                           ),
-                          SizedBox(height: AppStyle.mediumSpacing),
                           InputText(
                             label: "Email",
                             hint: "Enter your email",
@@ -135,23 +124,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(height: AppStyle.mediumSpacing),
-                          InputCheckbox(),
                           SizedBox(height: AppStyle.mediumSpacing * 2),
-
                           ButtonPrimary(
-                            onPressed: _onRegister,
-                            text: AppStrings.register,
+                            onPressed: _onLogin,
+                            text: AppStrings.login,
                           ),
                           SizedBox(height: AppStyle.smallSpacing),
                           Text(
-                            AppStrings.taglineCreateAccount,
+                            AppStrings.taglineLoginBusiness,
                             style: TextStyle(
                               color: AppColors.textDark,
                               fontSize: AppStyle.small,
                             ),
+                            textAlign: TextAlign.center,
                           ),
-
                           SizedBox(height: AppStyle.largeSpacing),
                           Row(
                             children: [
@@ -166,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   horizontal: 8.0,
                                 ),
                                 child: Text(
-                                  AppStrings.or,
+                                  AppStrings.notHaveAccount,
                                   style: TextStyle(
                                     color: AppColors.textDark,
                                     fontSize: AppStyle.h4,
@@ -181,15 +167,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                             ],
                           ),
-
                           SizedBox(height: AppStyle.largeSpacing),
                           ButtonSecondary(
                             onPressed: () {
                               Navigator.of(
                                 context,
-                              ).pushReplacementNamed(AuthRoute.login);
+                              ).pushNamed(AuthRoute.register);
                             },
-                            text: AppStrings.login,
+                            text: AppStrings.register,
                           ),
                         ],
                       ),

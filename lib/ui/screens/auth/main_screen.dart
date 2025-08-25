@@ -65,7 +65,12 @@ class MainScreen extends StatelessWidget {
                   ),
                   SizedBox(height: AppStyle.largeSpacing),
 
-                  ButtonPrimary(onPressed: () {}, text: FeatureText.login),
+                  ButtonPrimary(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(AuthRoute.login);
+                    },
+                    text: FeatureText.login,
+                  ),
                   SizedBox(height: AppStyle.mediumSpacing),
                   ButtonSecondary(
                     onPressed: () {
