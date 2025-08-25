@@ -1,9 +1,12 @@
 import 'package:finily/res/constant/config.dart';
+import 'package:finily/routes/auth_route.dart';
 import 'package:finily/routes/general_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -19,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: Config.appName,
       onGenerateRoute: GeneralRoute().generateRoute,
-      initialRoute: '/',
+      initialRoute: AuthRoute.splash,
       debugShowCheckedModeBanner: false,
     );
   }
