@@ -10,13 +10,9 @@ class ErrorScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Upss! Page not found!',
-              style: TextStyle(fontSize: 18, color: Colors.red),
-            ),
-            const SizedBox(height: 16),
-            LottieBuilder.asset('assets/lottie/error.json'),
+            LottieBuilder.asset('assets/lottie/404.json'),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(
