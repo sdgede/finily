@@ -1,3 +1,4 @@
+import 'package:finily/res/asset/call_assets.dart';
 import 'package:finily/res/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -12,7 +13,7 @@ class ErrorScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LottieBuilder.asset('assets/lottie/404.json'),
+            LottieBuilder.asset(CallAssets.notFound),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(

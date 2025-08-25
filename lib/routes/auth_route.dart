@@ -1,6 +1,7 @@
 import 'package:finily/res/constant/routes.dart';
 import 'package:finily/ui/global/eror_screen.dart';
 import 'package:finily/ui/screens/auth/main_screen.dart';
+import 'package:finily/ui/screens/auth/register_screen.dart';
 import 'package:finily/ui/screens/auth/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case main:
         return MaterialPageRoute(builder: (_) => const MainScreen());
+      case register:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       default:
         return MaterialPageRoute(builder: (_) => const ErrorScreen());
     }
