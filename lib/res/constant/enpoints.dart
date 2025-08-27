@@ -1,6 +1,6 @@
 import 'package:finily/res/constant/config.dart';
 
-class Endpoints {
+class AppEndpoints {
   //  Auth
   static String register = "${Config.baseUrl}/register";
   static String sendVerifyEmail =

@@ -4,6 +4,7 @@ import 'package:finily/res/string/feature.dart';
 import 'package:finily/res/string/string.dart';
 import 'package:finily/res/style/style.dart';
 import 'package:finily/routes/auth_route.dart';
+import 'package:finily/routes/hoem_route.dart';
 import 'package:finily/ui/widgets/buttons/primary_button.dart';
 import 'package:finily/ui/widgets/buttons/secondary_button.dart';
 import 'package:finily/ui/widgets/clipper/wave_clipper.dart';
@@ -67,7 +68,11 @@ class MainScreen extends StatelessWidget {
 
                   ButtonPrimary(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AuthRoute.login);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        HomeRoute.home,
+                        (route) => false,
+                      );
                     },
                     text: FeatureText.login,
                   ),

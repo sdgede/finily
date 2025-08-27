@@ -35,7 +35,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _onRegister() {
     if (_formKey.currentState!.validate()) {
       debugPrint("✅ Form valid, lanjut register...");
-      // TODO: Tambahkan logic register
     } else {
       debugPrint("❌ Form invalid, cek input user");
     }

@@ -5,7 +5,7 @@ class InputText extends StatefulWidget {
   final String label;
   final String hint;
   final TextEditingController? controller;
-  final bool obscureText; // default false, kalau true jadi password
+  final bool obscureText;
   final TextInputType keyboardType;
   final IconData? prefixIcon;
   final String? Function(String?)? validator;
@@ -33,7 +33,7 @@ class _InputTextState extends State<InputText> {
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.obscureText; // ambil dari param
+    _obscureText = widget.obscureText;
   }
 
   @override
