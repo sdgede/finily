@@ -3,7 +3,8 @@ import 'package:finily/res/colors/colors.dart';
 
 class InputText extends StatefulWidget {
   final String label;
-  final String hint;
+  final String? initialValue;
+  final String? hint;
   final TextEditingController? controller;
   final bool obscureText;
   final TextInputType keyboardType;
@@ -12,9 +13,10 @@ class InputText extends StatefulWidget {
   final void Function(String)? onChanged;
 
   const InputText({
+    this.initialValue,
     super.key,
     required this.label,
-    required this.hint,
+    this.hint,
     this.controller,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
@@ -38,13 +40,19 @@ class _InputTextState extends State<InputText> {
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(25);
+
     return TextFormField(
       controller: widget.controller,
+      initialValue: widget.controller == null ? widget.initialValue : null,
       obscureText: _obscureText,
       keyboardType: widget.keyboardType,
       validator: widget.validator,
       onChanged: widget.onChanged,
+      style: TextStyle(color: AppColors.primaryColor),
       decoration: InputDecoration(
+        filled: true,
+        fillColor: AppColors.light,
         prefixIcon:
             widget.prefixIcon != null
                 ? Icon(widget.prefixIcon, color: AppColors.primaryColor)
@@ -60,23 +68,23 @@ class _InputTextState extends State<InputText> {
                 )
                 : null,
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius,
           borderSide: BorderSide(
             color: AppColors.primaryColor.withOpacity(0.5),
             width: 1.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius,
           borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius,
           borderSide: const BorderSide(color: Colors.red, width: 2),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.red.shade700, width: 2),
+          borderRadius: borderRadius,
+          borderSide: BorderSide(color: Colors.redAccent, width: 2),
         ),
         labelText: widget.label,
         hintText: widget.hint,

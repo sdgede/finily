@@ -1,41 +1,37 @@
 import 'package:finily/res/colors/colors.dart';
 import 'package:finily/res/constant/routes.dart';
-import 'package:finily/res/string/feature.dart';
 import 'package:finily/res/style/style.dart';
 import 'package:finily/ui/widgets/appbart/appbar_default.dart';
 import 'package:finily/ui/widgets/buttons/center_create_button.dart';
 import 'package:finily/ui/widgets/buttons/floating_butoon.dart';
+import 'package:finily/ui/widgets/card/contume_card.dart';
 import 'package:finily/ui/widgets/card/drawer.dart';
-import 'package:finily/ui/widgets/card/stats_card_grid.dart';
-import 'package:finily/ui/widgets/chart/invoice_chart.dart';
 import 'package:finily/ui/widgets/clipper/wave_clipper.dart';
-import 'package:finily/ui/widgets/list/item_list_invoiice.dart';
+import 'package:finily/ui/widgets/forms/input_search.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class CustomerScreen extends StatefulWidget {
+  const CustomerScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CustomerScreen> createState() => _CustomerScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int activeIndex = 0;
+class _CustomerScreenState extends State<CustomerScreen> {
+  int activeIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      appBar: appbarDefault(text: "Customer", onTap: () {}),
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       drawer: DrawerWidget(),
-      appBar: appbarDefault(text: "Finily", onTap: () {}),
       body: Stack(
         children: [
-          // Wave background
+          // background wave
           ClipPath(
             clipper: WaveClipper(),
             child: Container(
@@ -51,76 +47,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // konten utama
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: AppStyle.largeSpacing),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    children: const [
-                      StatsCard(
-                        icon: FontAwesomeIcons.boxOpen,
-                        value: "855",
-                        label: FeatureText.product,
-                        change: "+4.8%",
-                        changeColor: Colors.green,
-                      ),
-                      StatsCard(
-                        icon: FontAwesomeIcons.fileInvoice,
-                        value: "658",
-                        label: FeatureText.invoice,
-                        change: "+2.6%",
-                        changeColor: Colors.green,
-                      ),
-                      StatsCard(
-                        icon: FontAwesomeIcons.users,
-                        value: "788",
-                        label: FeatureText.customer,
-                        change: "-1.8%",
-                        changeColor: Colors.red,
-                      ),
-                      StatsCard(
-                        icon: FontAwesomeIcons.dollarSign,
-                        value: "82%",
-                        label: FeatureText.tax,
-                        change: "+2.0%",
-                        changeColor: Colors.green,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-
-                  InvoiceChart(),
-                  const SizedBox(height: 30),
-
-                  Text(
-                    'Recent Transactions',
-                    style: TextStyle(
-                      fontSize: AppStyle.h3,
-                      color: AppColors.textDark,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-
-                  // contoh list transaksi
-                  invoiceItems(),
-                  const Divider(),
-                  invoiceItems(),
-                  const Divider(),
-                  invoiceItems(),
-                  const Divider(),
-                  invoiceItems(),
-                  const Divider(),
-                ],
-              ),
+          // content
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: AppStyle.largeSpacing),
+            child: Column(
+              children: [
+                const SizedBox(height: 100),
+                InputSearch(),
+                const SizedBox(height: 20),
+                CustemerItem(),
+                const SizedBox(height: 20),
+                CustemerItem(),
+                const SizedBox(height: 20),
+                CustemerItem(),
+                const SizedBox(height: 20),
+                CustemerItem(),
+                const SizedBox(height: 20),
+                CustemerItem(),
+              ],
             ),
           ),
         ],
