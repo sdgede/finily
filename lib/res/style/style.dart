@@ -7,6 +7,10 @@ class AppStyle {
   static const double h3 = 16.0;
   static const double h4 = 14.0;
 
+  static const double small = 10.0;
+  static const double medium = 12.0;
+  static const double large = 14.0;
+
   // Spacing
   static const double smallSpacing = 8.0;
   static const double mediumSpacing = 16.0;

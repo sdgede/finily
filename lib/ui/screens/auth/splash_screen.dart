@@ -1,3 +1,4 @@
+import 'package:finily/res/asset/call_assets.dart';
 import 'package:finily/res/colors/colors.dart';
 import 'package:finily/res/style/style.dart';
 import 'package:finily/routes/auth_route.dart';
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset('assets/images/logo.png'),
+            Image.asset(CallAssets.logo),
             SizedBox(height: AppStyle.largeSpacing * 2),
             CircularProgressIndicator(
               strokeWidth: 2.0,

@@ -1,6 +1,15 @@
+import 'package:finily/res/asset/call_assets.dart';
 import 'package:finily/res/colors/colors.dart';
+import 'package:finily/res/string/feature.dart';
+import 'package:finily/res/string/string.dart';
 import 'package:finily/res/style/style.dart';
-import 'package:finily/ui/widgets/wave_clipper.dart';
+import 'package:finily/routes/auth_route.dart';
+import 'package:finily/routes/home_route.dart';
+import 'package:finily/ui/widgets/buttons/primary_button.dart';
+import 'package:finily/ui/widgets/buttons/secondary_button.dart';
+import 'package:finily/ui/widgets/clipper/wave_clipper.dart';
+import 'package:finily/ui/widgets/text/tagline.dart';
+import 'package:finily/ui/widgets/text/title.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -12,6 +21,7 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
+
       body: Stack(
         children: [
           ClipPath(
@@ -40,72 +50,38 @@ class MainScreen extends StatelessWidget {
                   SizedBox(
                     height: AppStyle.mediumSpacing * 4 + AppStyle.largeSpacing,
                   ),
-
-                  Text(
-                    'Welcome !',
-                    style: TextStyle(
-                      fontSize: AppStyle.h1 * 2,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      fontFamily: AppStyle.fontFamily,
-                    ),
-                    textAlign: TextAlign.center,
+                  TitleWidget(
+                    text: AppStrings.welcomeText,
+                    color: AppColors.primaryColor,
                   ),
-
-                  Text(
-                    'Simplify Your Accounting & Grow Your Business',
-                    style: TextStyle(
-                      fontSize: AppStyle.h4,
-                      color: AppColors.textDark,
-                      fontFamily: AppStyle.fontFamily,
-                    ),
-                    textAlign: TextAlign.center,
+                  Tagline(
+                    text: AppStrings.taglineWithBusinessGrowth,
+                    color: AppColors.textDark,
                   ),
-
                   SizedBox(height: AppStyle.largeSpacing),
-
                   Image.asset(
-                    'assets/images/login.png',
+                    CallAssets.login,
                     height: size.height * 0.35,
                     fit: BoxFit.contain,
                   ),
                   SizedBox(height: AppStyle.largeSpacing),
 
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
-                      foregroundColor: AppColors.textLight,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 60.0,
-                      ),
-                      child: Text('Login'),
-                    ),
+                  ButtonPrimary(
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        HomeRoute.home,
+                        (route) => false,
+                      );
+                    },
+                    text: FeatureText.login,
                   ),
                   SizedBox(height: AppStyle.mediumSpacing),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: AppColors.textPrimary,
-                      backgroundColor: AppColors.backgroundColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        side: BorderSide(color: AppColors.primaryColor),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 50.0,
-                      ),
-                      child: Text('Register'),
-                    ),
+                  ButtonSecondary(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(AuthRoute.register);
+                    },
+                    text: FeatureText.register,
                   ),
                 ],
               ),

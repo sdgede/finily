@@ -5,6 +5,10 @@ class AppColors {
   static final Color primaryColor = Color(0xFF38B6FF);
   static final Color secondaryColor = Color(0xFF004E89);
 
+  // Grayscale
+  static final Color light = Color(0xFFFFFFFF);
+  static final Color dark = Color(0xFF000000);
+
   // Accent Colors
   static final Color successColor = Color(0xFF00C49A);
   static final Color dangerColor = Color(0xFFFF6B6B);
